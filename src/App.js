@@ -1,10 +1,13 @@
 import React from 'react';
 import './App.css';
+import Routes from "./routes/index.js"
 
 function App() {
   return (
-    <div className="App">
-      <p>Faça algo bem legal aqui :D</p>
+    <div className="container">
+      <div className="content">
+        <Routes />
+      </div>
     </div>
   );
 }
