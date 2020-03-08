@@ -21,8 +21,8 @@ function Inputs(props) {
         {label}
       </Label>
       <Input data-testid="form-input" type={type} list={list} onChange={onFunction} />
-      <datalist id="browsers">
-      {option.map((name, intKey) =><option data-testid="form-option" key={intKey}  value={name} />)}
+      <datalist data-testid="form-option" id={list}>
+      {option.map((name, intKey) =><option  key={intKey}  value={name} />)}
       </datalist>
      
     </>
