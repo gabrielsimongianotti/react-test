@@ -13,7 +13,7 @@ import { Input, Label } from 'reactstrap';
 
 */}
 function Inputs(props) {
-  const { label = "label", type = "test", list = "",option=[],onFunction=(eventInput)=>{console.log(eventInput.target.value)} } = props
+  const { label = "", type = "test", list = "",option=[],onFunction=(eventInput)=>{console.log(eventInput.target.value)} } = props
 
   return (
     <>
