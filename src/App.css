@@ -1,8 +1,10 @@
-body {
+.App {
   background: rgb(55, 55, 90) ;
-  background-size: cover;
-  -webkit-font-smoothing: antialiased !important;
+ }
+html{ 
+  background: rgb(55, 55, 90) ;
 }
+
 
 .container {
   margin: 50px auto 0;
@@ -13,8 +15,10 @@ body {
 }
 
 .content {
-  width: 90%;
-  background-color: #FFF;
+  width: 100%;
+  background-color: rgb(226, 226, 226);
   border-radius: 4px;
-  padding: 30px;
-}
+  padding:40px;
+  padding-top:5%;
+  padding-bottom: 5%;
+} 
