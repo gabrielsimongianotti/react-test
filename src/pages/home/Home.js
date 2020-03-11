@@ -25,7 +25,6 @@ class Home extends Component {
 
     getSearch(wordValue)
       .then(response => {
-        console.log(response)
         let key, apiOptions = [], apiSymbol = []
         for (key in response.bestMatches) {
           apiOptions.push(response.bestMatches[key]['2. name'])
@@ -35,23 +34,20 @@ class Home extends Component {
           this.setState({
             ...this.state,
             options: apiOptions,
-            symbol: apiSymbol
+            symbol: apiSymbol,
+            error: ""
           })
         }
         if (response["Note"] !== undefined) {
           this.setState({
             ...this.state,
             error: response["Note"],
-            options: [],
-            symbol: []
           })
         }
         if (response["Error Message"] !== undefined) {
           this.setState({
             ...this.state,
             error: response["Error Message"],
-            options: [],
-            symbol: []
           })
         }
       })
@@ -59,35 +55,29 @@ class Home extends Component {
         this.setState({
           ...this.state,
           error: `Error state ${error.request.status}`,
-          options: [],
-          symbol: []
         })
       })
   }
 
   endPoint() {
-
     const { storeValue, dispatch } = this.props;
     getEndPoint(this.findSymbol(storeValue.input)).
       then(response => {
-        console.log(response)
         if (response["Error Message"] !== undefined) {
           this.setState({
             ...this.state,
             error: response["Error Message"]
           })
         }
-        if (response["Note"] === undefined) {
-          this.props.history.push('/details')
-          dispatch({ type: "ADD_INPUT", title: response })
-        }
-        if (response["Note"] !== undefined) {
+        else if (response["Note"] !== undefined) {
           this.setState({
             ...this.state,
             error: response["Note"],
-            options: [],
-            symbol: []
           })
+        }
+        else {
+          dispatch({ type: "ADD_DATAS", title: response })
+          this.props.history.push('/details')
         }
       }).catch(error => {
         this.setState({
@@ -103,10 +93,11 @@ class Home extends Component {
     const { symbol, options } = this.state;
     let id = "";
     let intOptions = 0;
-
     for (intOptions in options) {
-      console.log(symbol[intOptions])
       if (data === options[intOptions]) {
+        id = symbol[intOptions]
+      }
+      if (intOptions === options.length) {
         id = symbol[intOptions]
       }
     }
@@ -117,23 +108,22 @@ class Home extends Component {
   render() {
     return (
       <>
-        <Label>Pesquisa</Label>
+        <Label>Research</Label>
         <InputGroup>
           <Input
-            // label="Pesquisa "
             type="test"
             list="browsers"
             option={this.state.options}
             onFunction={this.search}
           />
           <InputGroupAddon addonType="append">
-            <Button color="success" onClick={this.endPoint}><FaSearch /></Button>
+            <Button data-testid="form-button" color="secondary" onClick={this.endPoint}><FaSearch /></Button>
           </InputGroupAddon>
         </InputGroup>
         {this.state.error !== "" ?
           <>
             <br />
-            <Alert color="danger">
+            <Alert data-testid="form-error" color="danger">
               {this.state.error}
             </Alert>
           </>

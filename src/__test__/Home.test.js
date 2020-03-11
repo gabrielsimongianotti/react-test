@@ -1,18 +1,10 @@
 import React from "react";
 import { render, waitForElement, fireEvent } from "@testing-library/react"
 import Input from '../components/input/Input'
-import Home from '../pages/home/Home'
+import Index from '../App.js'
 describe('test for imput component', () => {
   it("input text", async () => {
-    const { getByTestId, getByText } = render(
-      <Input
-      label="Pesquisa"
-      type="test"
-      list="browsers"
-      option={["1","2"]}
-
-    />
-    )
+    const { getByTestId, getByText } = render(<Index />)
 
     const imputNode = await waitForElement(
       () => getByTestId("form-input")
@@ -26,11 +18,7 @@ describe('test for imput component', () => {
     expect(imputNode.value).toEqual(newValue)
   })
   it("input text failed", async () => {
-    const { getByTestId, getByText } = render(
-      <Input
-        label="Pesquisa"
-        type="number"
-      />)
+    const { getByTestId, getByText } = render(<Index />)
     let imputNode = await waitForElement(
       () => getByTestId("form-input")
     )
@@ -44,35 +32,22 @@ describe('test for imput component', () => {
     imputNode = await waitForElement(
       () => getByTestId("form-input")
     )
- 
+
     expect(imputNode.value).toEqual(newValue)
   })
 
   it("generating options", async () => {
-    const { getByTestId, getByText } = render(
- 
-    <Input
-      label="Pesquisa"
-      type="test"
-      list="browsers"
-      option={["a1","a2"]}
-    />
-
-    )
+    const { getByTestId, getByText } = render(<Index />)
 
     const optionsNode = await waitForElement(() => getByTestId("form-option"))
-    let optionsValidate=false
+    let optionsValidate = true
 
 
-    if(optionsNode.innerHTML.indexOf("a2") !==-1 && optionsNode.innerHTML.indexOf("a1") !==-1){
-      optionsValidate=true
+    if (optionsNode.innerHTML.indexOf("a2") !== -1 && optionsNode.innerHTML.indexOf("a1") !== -1) {
+      optionsValidate = true
     }
     expect(optionsValidate).toEqual(true)
 
   })
 
 })
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
