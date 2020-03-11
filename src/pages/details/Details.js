@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Row, Col, Label } from "reactstrap";
+import { Button, Row, Col, Label, Alert } from "reactstrap";
 import { connect } from "react-redux";
 
 import Graphic from '../../components/graphic/Graphic.js';
@@ -28,14 +28,14 @@ class details extends Component {
     const { storeValue } = this.props
     return (
       <>
-     
+
         <Row>
           <Col>
             <Button href="/">Come back</Button>
           </Col>
           <Col>
             <Input
-             data-testid="form-row"
+              data-testid="form-row"
               label="Initial date"
               type="date"
               onFunction={this.startData}
@@ -50,9 +50,14 @@ class details extends Component {
           </Col>
         </Row>
         <br />
-        <Label>{storeValue.input}</Label>
-        <br />
-        <Graphic />
+        {storeValue.datesEndPoint["Time Series (Daily)"] !== undefined ?
+          <>
+            <Label>{storeValue.input}</Label>
+            <br />
+            <Graphic />
+          </>
+          : <Alert data-testid="form-error" color="danger"> Error </Alert>
+        }
       </>
     );
   }

@@ -4,7 +4,7 @@ const initialState = {
   input: "",
   datesEndPoint: [],
   startData: "2019-01-01",
-  endData: now.getFullYear + "-" + now.getMonth() + "-" + now.getDay(),
+  endData: now.getFullYear() + "-" + now.getMonth() + "-" + now.getDay(),
   count: 0
 }
 
