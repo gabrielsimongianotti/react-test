@@ -3,6 +3,9 @@
 Esse projeto foi iniciado com [Create React App](https://github.com/facebook/create-react-app). (Vamos adiantar algumas coisas por aqui hehe!)
 
 ## hiae-react-test
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/66527d7bf1f648e4a1d7865a82cbbec8)](https://app.codacy.com/manual/gabrielsimongianotti/react-test?utm_source=github.com&utm_medium=referral&utm_content=gabrielsimongianotti/react-test&utm_campaign=Badge_Grade_Dashboard)
+
 Seja muito bem vindo.  
 Sim, mas é claro! Se vc chegou até aqui, considere-se importante para nós.  
 
